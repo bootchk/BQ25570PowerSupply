@@ -16,10 +16,8 @@ It includes load switches for two power rails.
 
 ### Rails
 
-The power rails include:
+The power rail pins:
 
-
-TODO format this
     Unregulated storage rail, 0 to 5.5V.  VOUT
     Switched storage rail, 0 to 5.5V      VOUT_SWITCHED
     Regulated MCU power, 1.9 to 3.6V.     VREG
@@ -78,7 +76,7 @@ Voltage internal to the BQ reaches the VCHGEN voltage of the BQ (1.8V.)
 Charging is relatively efficient, biasing the solar cell to its MPT.
 The buck converter of the BQ pulses energy to the storage supercap.
 Voltage on storage supercap slowly rises from zero.
-See more details at the BQ25570 datasheet.
+See more details at the BQ25570 datasheet and the reference above.
 
 VREG and VREG_SWITCHED are off, at 0V.
 
@@ -88,9 +86,9 @@ Ordinarily, in this state you do not use power from the VOUT pin.
 
 Voltage on the storage reaches the programmed Vbat_ok voltage (2.1V.)
 The VBAT_OK pin of the BQ asserts high and enables the LDO.
-The LDO begins operation in the linear mode, yielding  more than 2.0V (after subtracting Vldo of the regulator, less than 0.1 V.) 
+The LDO begins operation in the linear mode, yielding  more than 2.0V (after subtracting Vdo of the regulator, less than 0.1 V.) 
 
-Any MCU on the VREG pin powers on (boots.)
+Any MCU on the VREG pin powers on (boots, from a power on reset.)
 It should almost immediately go back to sleep until storage and voltage increase.
 There is hysteresis.
 The BQ will assert its VBAT_OK pin
@@ -102,7 +100,7 @@ Voltage on storage, VOut, and VReg will continue to rise.
 The MCU can read its own Vcc voltage to know when the system is in this state.
 The MCU can read its own Vcc voltage to know when it is nearing brownout.
 
-The MCU boots at rising voltage 1.9V but will not brownout reset until falling voltage 1.7V.
+The MCU boots at rising voltage Vsys+ (1.99V max) but will not brownout reset until falling voltage Vsys- 1.7V.
 
 ### Regulation state
 
@@ -164,8 +162,8 @@ These are the voltages for the BQ programming resistors in the design (in the bi
 
     VOUT          The regulated voltage of the BQ buck converter   5.5V
 
-    V_BAT_OK      The rising voltage at which VBatOk asserts       2.1V
-    V_BAT_OK_HYST The falling voltage at which VBatOk deasserts    2.0V
+    V_BAT_OK_HYST The rising voltage at which VBatOk asserts       2.1V
+    V_BAT_OK_     The falling voltage at which VBatOk deasserts    2.0V
 
 (The undervoltage of the BQ is hardwired in the BQ.)
 
@@ -182,6 +180,13 @@ The regulated voltage of the LDO is determined by the part number of the LDO.
 The BQ is programmed with the MSP430 in mind.
 Since the MCU is on the LDO output rail (VReg), and the LDO has a voltage drop Vdo of about 0.1V at 1mA,
 the voltages programmed for the BQ V_BAT_OK are 0.1V higher than the voltages the MCU sees.
+
+(The MSP430 in LPM4.5 sleep is essentially powered off and reset,
+but GPIO pins are monitored for interrupts that wake.
+Waking from LPM4.5 is mostly the same as a power on reset,
+except a flag tells you it is from sleep.
+The MSP430FR family has FRAM to maintain SW state,
+so a reset from sleep can easily recover state.)
 
 ### Boot voltage
 
@@ -203,7 +208,7 @@ The requirements for a safe reset when SVS is disabled:
     Vcc less than Vbor (0.1V)
     Vcc greater than Vbor for time tBOR_safe (10 mS)
 
-If these requirements are not met, the MSP is not guaranteed to come out of reset after a voltage drop.
+If these requirements are not met and SVS is disabled, the MSP is not guaranteed to come out of reset after a voltage drop.
 
 In summary, in this design, the BQ25570 signal Vbat_ok cycles (switches on and off)
 power (the LDO) to the MSP430 MCU,
@@ -218,7 +223,7 @@ Typical filter capacitors on the MCU are 10uF.
 At 50uA current, the filter caps discharge in less than a millisecond.
 Thus voltage on the MSP Vcc pin quickly drops below MSP Vbor of 0.1V.
 
-In this condition, the other requirement is to stay in this condition for time tBOR_safe.
+The other requirement is to stay in this condition (Vcc less than 0.1V) for time tBOR_safe.
 Since voltage on the supercap is at level VBAT_OK (2.0V)
 the voltage must rise to level VBAT_OK_HYST (2.1V)
 before the BQ raises Vbat_ok again and enables the LDO.
@@ -232,11 +237,11 @@ must consider the same requirements.
 
 ## Max current ratings
 
-VReg          LDO             (TI part TSP7A02)            200 mA
+    VReg          LDO             (TI part TSP7A02)            200 mA
 
-VOutSwitched  LoadswitchOut   (TI part number TPS27081A)     3 A
+    VOutSwitched  LoadswitchOut   (TI part number TPS27081A)     3 A
     
-VRegSwitched  LoadswitchReg   (TI part number TPS22860)    200 mA
+    VRegSwitched  LoadswitchReg   (TI part number TPS22860)    200 mA
 
 
 
@@ -293,7 +298,7 @@ This current depends on the capacitance in F among other things like the superca
 I exclude this current from quiescent current.
 But the solar cell current must provide this current to keep storage charged.
 
-### Before VReg in regulation
+### Before LDO enabled (Vbat_ok signal low)
 
 The MCU is not booted so doesn't drive the loadswitch enable pins.
 
@@ -305,13 +310,13 @@ The MCU is not booted so doesn't drive the loadswitch enable pins.
 
 LoadswitchOut has a feature "Smart Enable" to ensure it is not enabled on voltage rising during powerup.
 
-### After VReg in regulation
+### After LDO enabled (booted state)
 
-The MCU is booted but sleeping mostly, and holding loadswitches off.
+The MCU is booted (which is a load) but sleeping mostly, and holding load switches off.
 
     LoadswitchOut is standby               50 nA
     LoadswitchReg is powered but shutdown  12 nA
-    LDO is regulating                      25 nA
+    LDO is enabled                         25 nA
     MCU is booted but in low power mode    50 nA
 
     total                                 137 nA
