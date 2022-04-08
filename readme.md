@@ -59,6 +59,12 @@ https://www.edn.com/fast-charging-a-supercapacitor-from-energy-harvesters/
 In short, the supercapacitor is on the VOUT pin of the BQ, instead of the VBAT pin.
 This makes coldstart relatively short in duration when charging a supercapacitor.
 
+A more typical use of the BQ25570 is to energy harvest to a battery or supercapacitor on the VBAT pin,
+then use the buck converter of the BQ25570 to output a higher voltage, say 3.6V.
+That design (using a supercapacitor on VBAT) can suffer a long coldstart.
+Here, the supercapacitor is on VOUT, and is charged to a high voltage (5.5V)
+but adds another LDO to get a regulated 3.6V output.
+
 
 ## Power States and Sequencing
 
