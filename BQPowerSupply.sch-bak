@@ -13,7 +13,7 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Notes 7250 6800 0    60   ~ 0
+Text Notes 7150 6950 0    60   ~ 0
 TI BQ harvest solar, store super capacitor, regulate and switch power supply
 $Comp
 L BQPowerSupply-rescue:BQ25570-Battery_Management-Blinker-rescue BQ1
@@ -387,7 +387,7 @@ L Device:R ROK2
 U 1 1 5E94E2C5
 P 3400 5100
 F 0 "ROK2" H 3600 5000 50  0000 C CNN
-F 1 "5.36M" H 3600 5100 50  0000 C CNN
+F 1 "4,42M" H 3600 5100 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric" V 3330 5100 50  0001 C CNN
 F 3 "" H 3400 5100 50  0000 C CNN
 F 4 "541-5.36MHCT-ND" H 3400 5100 60  0001 C CNN "SourcePartNo"
@@ -422,13 +422,13 @@ $EndComp
 Text Notes 1400 6000 0    60   ~ 0
 VOvervolt 5.5V
 Text Notes 3200 6050 0    60   ~ 0
-VBatOk rising 2.4V\nfalling 2.2V
+VBatOk rising 2.1V\nfalling 2.0V
 $Comp
 L Device:R ROK3
 U 1 1 5E950AB5
 P 3400 4800
 F 0 "ROK3" H 3600 4700 50  0000 C CNN
-F 1 "1M" H 3600 4800 50  0000 C CNN
+F 1 "0.510M" H 3600 4800 50  0000 C CNN
 F 2 "Resistor_SMD:R_0603_1608Metric" V 3330 4800 50  0001 C CNN
 F 3 "" H 3400 4800 50  0000 C CNN
 F 4 "541-1.00MHCT-ND" H 3400 4800 60  0001 C CNN "SourcePartNo"
@@ -456,29 +456,6 @@ F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10350 4300 50
 F 3 "~" H 10350 4300 50  0001 C CNN
 F 4 "stock" H 10350 4300 50  0001 C CNN "SourcePartNo"
 	1    10350 4300
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_01x02 VOutSw1
-U 1 1 5E95332C
-P 10350 3300
-F 0 "VOutSw1" H 10430 3292 50  0000 L CNN
-F 1 "Conn_01x02" H 10430 3201 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10350 3300 50  0001 C CNN
-F 3 "~" H 10350 3300 50  0001 C CNN
-F 4 "stock" H 10350 3300 50  0001 C CNN "SourcePartNo"
-	1    10350 3300
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_01x02 VregSw1
-U 1 1 5E953AB6
-P 10400 5300
-F 0 "VregSw1" H 10480 5292 50  0000 L CNN
-F 1 "Conn_01x02" H 10480 5201 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10400 5300 50  0001 C CNN
-F 3 "~" H 10400 5300 50  0001 C CNN
-	1    10400 5300
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -517,56 +494,31 @@ $EndComp
 $Comp
 L power:GND #PWR023
 U 1 1 5E955DB2
-P 10200 5400
-F 0 "#PWR023" H 10200 5150 50  0001 C CNN
-F 1 "GND" V 10200 5150 50  0000 C CNN
-F 2 "" H 10200 5400 50  0000 C CNN
-F 3 "" H 10200 5400 50  0000 C CNN
-	1    10200 5400
+P 10400 5350
+F 0 "#PWR023" H 10400 5100 50  0001 C CNN
+F 1 "GND" V 10400 5100 50  0000 C CNN
+F 2 "" H 10400 5350 50  0000 C CNN
+F 3 "" H 10400 5350 50  0000 C CNN
+	1    10400 5350
 	0    1    1    0   
 $EndComp
 Text GLabel 3150 3450 2    60   Input ~ 0
 VOut
-$Comp
-L BQPowerSupply-rescue:TPS7A02-4X2SON-mySchemSym LDO1
-U 1 1 5E928A83
-P 8850 4400
-F 0 "LDO1" H 8850 4742 50  0000 C CNN
-F 1 "TPS7A02-4X2SON" H 8850 4651 50  0000 C CNN
-F 2 "myFootprints:DQN" H 8850 4725 50  0001 C CIN
-F 3 "http://www.ti.com/lit/ds/symlink/tps7a02.pdf" H 8850 4450 50  0001 C CNN
-F 4 "296-TPS7A0222PDQNRCT-ND " H 8850 4400 50  0001 C CNN "SourcePartNo"
-	1    8850 4400
-	1    0    0    -1  
-$EndComp
-Text GLabel 9150 4400 2    60   Input ~ 0
+Text GLabel 8500 4100 0    60   Input ~ 0
 VOut
-Text GLabel 9150 4500 2    60   Input ~ 0
+Text GLabel 8500 4200 0    60   Input ~ 0
 VBatOK
-$Comp
-L power:GND #PWR013
-U 1 1 5E929BA4
-P 9150 4300
-F 0 "#PWR013" H 9150 4050 50  0001 C CNN
-F 1 "GND" V 9150 4050 50  0000 C CNN
-F 2 "" H 9150 4300 50  0000 C CNN
-F 3 "" H 9150 4300 50  0000 C CNN
-	1    9150 4300
-	0    -1   -1   0   
-$EndComp
 $Comp
 L power:GND #PWR012
 U 1 1 5E92A674
-P 8550 4500
-F 0 "#PWR012" H 8550 4250 50  0001 C CNN
-F 1 "GND" V 8550 4250 50  0000 C CNN
-F 2 "" H 8550 4500 50  0000 C CNN
-F 3 "" H 8550 4500 50  0000 C CNN
-	1    8550 4500
-	0    1    1    0   
+P 8800 4500
+F 0 "#PWR012" H 8800 4250 50  0001 C CNN
+F 1 "GND" V 8800 4250 50  0000 C CNN
+F 2 "" H 8800 4500 50  0000 C CNN
+F 3 "" H 8800 4500 50  0000 C CNN
+	1    8800 4500
+	1    0    0    -1  
 $EndComp
-Text GLabel 8550 4300 0    60   Input ~ 0
-Vreg
 Text GLabel 10150 2600 0    60   Input ~ 0
 VOut
 Text GLabel 10150 4300 0    60   Input ~ 0
@@ -622,57 +574,16 @@ F 3 "" H 8450 5400 50  0000 C CNN
 $EndComp
 Text GLabel 8450 5250 0    60   Input ~ 0
 VregSw
-Text GLabel 10200 5300 0    60   Input ~ 0
+Text GLabel 10400 5250 0    60   Input ~ 0
 VregSw
-$Comp
-L BQPowerSupply-rescue:TPS3839-SOT-23-mySchemSym Vmon1
-U 1 1 5E938070
-P 8800 1800
-F 0 "Vmon1" H 8800 1887 60  0000 C CNN
-F 1 "TPS3839-3.1V" H 8800 1781 60  0000 C CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 8800 1800 60  0001 C CNN
-F 3 "" H 8800 1800 60  0000 C CNN
-F 4 "296-35470-1-ND" H 8800 1800 50  0001 C CNN "SourcePartNo"
-	1    8800 1800
-	1    0    0    -1  
-$EndComp
-Text GLabel 9250 2050 2    60   Input ~ 0
-VOut
-$Comp
-L power:GND #PWR010
-U 1 1 5E93A244
-P 8350 2000
-F 0 "#PWR010" H 8350 1750 50  0001 C CNN
-F 1 "GND" V 8350 1750 50  0000 C CNN
-F 2 "" H 8350 2000 50  0000 C CNN
-F 3 "" H 8350 2000 50  0000 C CNN
-	1    8350 2000
-	0    1    1    0   
-$EndComp
-Text GLabel 8350 2150 0    60   Input ~ 0
-VOutGood
-Text GLabel 5100 7200 0    60   Output ~ 0
+Text GLabel 10150 3500 0    60   Output ~ 0
 VOutSwEn
 Text GLabel 9300 5250 2    60   Input ~ 0
 VRegSwEn
-Text GLabel 5100 7300 0    60   Output ~ 0
+Text GLabel 10400 5450 0    60   Output ~ 0
 VRegSwEn
-$Comp
-L Connector_Generic:Conn_01x03 Good,OutSw,RegSw1
-U 1 1 5E93C4D0
-P 5300 7200
-F 0 "Good,OutSw,RegSw1" H 5380 7242 50  0000 L CNN
-F 1 "Conn_01x03" H 5380 7151 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 5300 7200 50  0001 C CNN
-F 3 "~" H 5300 7200 50  0001 C CNN
-F 4 "stock" H 5300 7200 50  0001 C CNN "SourcePartNo"
-	1    5300 7200
-	1    0    0    -1  
-$EndComp
-Text Notes 10300 2200 0    60   ~ 0
+Text Notes 9850 2200 0    60   ~ 0
 Power rails out
-Text Notes 4600 6650 0    60   ~ 0
-Logic signals
 $Comp
 L Device:C 1u1
 U 1 1 5E9348C3
@@ -688,53 +599,28 @@ $EndComp
 $Comp
 L Device:C 1u2
 U 1 1 5E940C1D
-P 6900 4250
-F 0 "1u2" H 7050 4250 50  0000 L CNN
-F 1 "1uF" H 6925 4150 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 6938 4100 50  0001 C CNN
-F 3 "" H 6900 4250 50  0000 C CNN
-F 4 "490-10479-1-nd" H 6900 4250 60  0001 C CNN "SourcePartNo"
-	1    6900 4250
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C 0.1u2
-U 1 1 5E941AAE
-P 7600 4250
-F 0 "0.1u2" H 7750 4250 50  0000 L CNN
-F 1 "0.1uF" H 7625 4150 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 7638 4100 50  0001 C CNN
-F 3 "" H 7600 4250 50  0000 C CNN
-F 4 "490-9730-1-nd" H 7600 4250 60  0001 C CNN "SourcePartNo"
-	1    7600 4250
+P 6050 4300
+F 0 "1u2" H 6200 4300 50  0000 L CNN
+F 1 "1uF" H 6075 4200 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 6088 4150 50  0001 C CNN
+F 3 "" H 6050 4300 50  0000 C CNN
+F 4 "490-10479-1-nd" H 6050 4300 60  0001 C CNN "SourcePartNo"
+	1    6050 4300
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR05
 U 1 1 5E942592
-P 6900 4400
-F 0 "#PWR05" H 6900 4150 50  0001 C CNN
-F 1 "GND" H 6900 4250 50  0000 C CNN
-F 2 "" H 6900 4400 50  0000 C CNN
-F 3 "" H 6900 4400 50  0000 C CNN
-	1    6900 4400
+P 6050 4450
+F 0 "#PWR05" H 6050 4200 50  0001 C CNN
+F 1 "GND" H 6050 4300 50  0000 C CNN
+F 2 "" H 6050 4450 50  0000 C CNN
+F 3 "" H 6050 4450 50  0000 C CNN
+	1    6050 4450
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:GND #PWR08
-U 1 1 5E942F34
-P 7600 4400
-F 0 "#PWR08" H 7600 4150 50  0001 C CNN
-F 1 "GND" H 7600 4250 50  0000 C CNN
-F 2 "" H 7600 4400 50  0000 C CNN
-F 3 "" H 7600 4400 50  0000 C CNN
-	1    7600 4400
-	1    0    0    -1  
-$EndComp
-Text GLabel 6900 4100 2    60   Input ~ 0
+Text GLabel 6050 4150 2    60   Input ~ 0
 VOut
-Text GLabel 7600 4100 2    60   Input ~ 0
-Vreg
 $Comp
 L power:GND #PWR04
 U 1 1 5E9441C7
@@ -772,51 +658,49 @@ $EndComp
 $Comp
 L Device:C 1u3
 U 1 1 5E946025
-P 6800 5250
-F 0 "1u3" H 6950 5250 50  0000 L CNN
-F 1 "1uF" H 6825 5150 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 6838 5100 50  0001 C CNN
-F 3 "" H 6800 5250 50  0000 C CNN
-F 4 "490-10479-1-nd" H 6800 5250 60  0001 C CNN "SourcePartNo"
-	1    6800 5250
+P 6900 5100
+F 0 "1u3" H 7050 5100 50  0000 L CNN
+F 1 "1uF" H 6925 5000 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 6938 4950 50  0001 C CNN
+F 3 "" H 6900 5100 50  0000 C CNN
+F 4 "490-10479-1-nd" H 6900 5100 60  0001 C CNN "SourcePartNo"
+	1    6900 5100
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR03
 U 1 1 5E94602F
-P 6800 5400
-F 0 "#PWR03" H 6800 5150 50  0001 C CNN
-F 1 "GND" H 6800 5250 50  0000 C CNN
-F 2 "" H 6800 5400 50  0000 C CNN
-F 3 "" H 6800 5400 50  0000 C CNN
-	1    6800 5400
+P 6900 5250
+F 0 "#PWR03" H 6900 5000 50  0001 C CNN
+F 1 "GND" H 6900 5100 50  0000 C CNN
+F 2 "" H 6900 5250 50  0000 C CNN
+F 3 "" H 6900 5250 50  0000 C CNN
+	1    6900 5250
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:C 0.1u3
 U 1 1 5E94603A
-P 7450 5250
-F 0 "0.1u3" H 7600 5250 50  0000 L CNN
-F 1 "0.1uF" H 7475 5150 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric" H 7488 5100 50  0001 C CNN
-F 3 "" H 7450 5250 50  0000 C CNN
-F 4 "490-9730-1-nd" H 7450 5250 60  0001 C CNN "SourcePartNo"
-	1    7450 5250
+P 7500 5400
+F 0 "0.1u3" H 7650 5400 50  0000 L CNN
+F 1 "0.1uF" H 7525 5300 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 7538 5250 50  0001 C CNN
+F 3 "" H 7500 5400 50  0000 C CNN
+F 4 "490-9730-1-nd" H 7500 5400 60  0001 C CNN "SourcePartNo"
+	1    7500 5400
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR06
 U 1 1 5E946044
-P 7450 5400
-F 0 "#PWR06" H 7450 5150 50  0001 C CNN
-F 1 "GND" H 7450 5250 50  0000 C CNN
-F 2 "" H 7450 5400 50  0000 C CNN
-F 3 "" H 7450 5400 50  0000 C CNN
-	1    7450 5400
+P 7500 5550
+F 0 "#PWR06" H 7500 5300 50  0001 C CNN
+F 1 "GND" H 7500 5400 50  0000 C CNN
+F 2 "" H 7500 5550 50  0000 C CNN
+F 3 "" H 7500 5550 50  0000 C CNN
+	1    7500 5550
 	1    0    0    -1  
 $EndComp
-Text GLabel 5100 7100 0    60   Input ~ 0
-VOutGood
 $Comp
 L power:GND #PWR0102
 U 1 1 5E935A41
@@ -830,9 +714,9 @@ F 3 "" H 8500 3200 50  0000 C CNN
 $EndComp
 Text GLabel 9100 3200 2    60   Input ~ 0
 R1Pull
-Text GLabel 6800 5100 2    60   Input ~ 0
+Text GLabel 6900 4950 2    60   Input ~ 0
 Vreg
-Text GLabel 7450 5100 2    60   Input ~ 0
+Text GLabel 7500 5250 2    60   Input ~ 0
 VregSw
 Text GLabel 7550 2950 2    60   Input ~ 0
 VOutSw
@@ -881,28 +765,100 @@ F 3 "~" H 1150 1150 50  0001 C CNN
 	1    1150 1150
 	-1   0    0    1   
 $EndComp
-Text GLabel 4900 3250 0    60   Input ~ 0
+Text GLabel 4750 3750 0    60   Input ~ 0
 VOut
 $Comp
 L Connector_Generic:Conn_01x02 Super1
 U 1 1 5E94BEC9
-P 5100 3250
-F 0 "Super1" H 5018 2925 50  0000 C CNN
-F 1 "Conn_01x02" H 5018 3016 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 5100 3250 50  0001 C CNN
-F 3 "~" H 5100 3250 50  0001 C CNN
-	1    5100 3250
+P 4950 3750
+F 0 "Super1" H 4868 3425 50  0000 C CNN
+F 1 "Conn_01x02" H 4868 3516 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 4950 3750 50  0001 C CNN
+F 3 "~" H 4950 3750 50  0001 C CNN
+	1    4950 3750
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0103
 U 1 1 5E93BB4E
-P 4900 3350
-F 0 "#PWR0103" H 4900 3100 50  0001 C CNN
-F 1 "GND" V 4900 3150 50  0000 C CNN
-F 2 "" H 4900 3350 50  0000 C CNN
-F 3 "" H 4900 3350 50  0000 C CNN
-	1    4900 3350
+P 4750 3850
+F 0 "#PWR0103" H 4750 3600 50  0001 C CNN
+F 1 "GND" V 4750 3650 50  0000 C CNN
+F 2 "" H 4750 3850 50  0000 C CNN
+F 3 "" H 4750 3850 50  0000 C CNN
+	1    4750 3850
 	0    1    1    0   
+$EndComp
+Text Notes 5700 3950 0    60   ~ 0
+Impedance LDO in
+Text Notes 6800 3950 0    60   ~ 0
+Stability LDO out
+Text GLabel 6950 4150 2    60   Input ~ 0
+Vreg
+$Comp
+L power:GND #PWR08
+U 1 1 5E942F34
+P 6950 4450
+F 0 "#PWR08" H 6950 4200 50  0001 C CNN
+F 1 "GND" H 6950 4300 50  0000 C CNN
+F 2 "" H 6950 4450 50  0000 C CNN
+F 3 "" H 6950 4450 50  0000 C CNN
+	1    6950 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C 0.1u2
+U 1 1 5E941AAE
+P 6950 4300
+F 0 "0.1u2" H 7100 4300 50  0000 L CNN
+F 1 "0.1uF" H 6975 4200 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 6988 4150 50  0001 C CNN
+F 3 "" H 6950 4300 50  0000 C CNN
+F 4 "490-9730-1-nd" H 6950 4300 60  0001 C CNN "SourcePartNo"
+	1    6950 4300
+	1    0    0    -1  
+$EndComp
+Text GLabel 9100 4100 2    60   Input ~ 0
+Vreg
+Text Notes 5600 5950 0    60   ~ 0
+Note two filter caps on VReg can be combined if close together.
+Text Notes 4300 4250 0    60   ~ 0
+Super capacitor storage
+Text Notes 1000 700  0    60   ~ 0
+Solar cell in
+$Comp
+L Connector_Generic:Conn_01x03 JVOutSw1
+U 1 1 6250C90E
+P 10350 3400
+F 0 "JVOutSw1" H 10430 3442 50  0000 L CNN
+F 1 "Conn_01x03" H 10430 3351 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10350 3400 50  0001 C CNN
+F 3 "~" H 10350 3400 50  0001 C CNN
+	1    10350 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 JVRegSw1
+U 1 1 6250D938
+P 10600 5350
+F 0 "JVRegSw1" H 10680 5392 50  0000 L CNN
+F 1 "Conn_01x03" H 10680 5301 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 10600 5350 50  0001 C CNN
+F 3 "~" H 10600 5350 50  0001 C CNN
+	1    10600 5350
+	1    0    0    -1  
+$EndComp
+Text Notes 10650 7650 0    60   ~ 0
+2
+$Comp
+L Regulator_Linear:TPS7A05285PDBV LDO1
+U 1 1 62518C58
+P 8800 4200
+F 0 "LDO1" H 8800 4567 50  0000 C CNN
+F 1 "TPS7A02_3.6" H 8800 4476 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-5" H 8800 4550 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/tps7a05.pdf" H 8800 4700 50  0001 C CNN
+	1    8800 4200
+	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
